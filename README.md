@@ -36,5 +36,7 @@
   - API 22 Lollopop 5.1
 
 ## Configurar Gradle
+- namespace = "com.suiteJVG.main"
 - compileSdk = 34
+- applicationId = "com.suiteJVG.main"
 - targetSdk = 34
