@@ -23,3 +23,18 @@
 - Gravedad
 - Acelerómetro
 </details>
+
+
+## Crear el proyecto
+- Name
+  - SuiteSensores
+- Package name
+  - com.suiteJVG.suitesensores
+- Language
+  - Java
+- Minimum SDK
+  - API 22 Lollopop 5.1
+
+## Configurar Gradle
+- compileSdk = 34
+- targetSdk = 34
