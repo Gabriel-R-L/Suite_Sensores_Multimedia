@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/vix"
+        android:title="Icono Vix"
+        android:icon="@drawable/vix_icon"
+        android:orderInCategory="100"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/dele"
+        android:title="Icono delegado"
+        android:icon="@drawable/dele_icon"
+        android:orderInCategory="100"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/jona"
+        android:title="Icono Jona"
+        android:icon="@drawable/jona_icon"
+        android:orderInCategory="100"
+        app:showAsAction="always" />
+
+</menu>
