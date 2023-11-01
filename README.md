@@ -1,7 +1,5 @@
 # Drive del proyecto
-```
-https://drive.google.com/drive/folders/1aVOetqYl_Fk-30PkJdZ2b-nh2-_MJkTL?usp=sharing
-```
+<span style="color:yellow">[Proyectos asignados](https://drive.google.com/drive/folders/1aVOetqYl_Fk-30PkJdZ2b-nh2-_MJkTL?usp=sharing)</span>
 
 ## <span style="color:#f2446f">Proyectos asignados</span>
 
