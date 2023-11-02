@@ -10,6 +10,7 @@
 # model_medium.h5 / model_hard.h5
 ![image](https://github.com/Gabriel-R-L/Suite_Sensores_Multimedia/assets/121958702/ba1b61b5-17b9-401d-9780-44ae13edc565)
 - El medium ha sido entrenado con 75000 epochs
+- El medium_hard ha sido entrenado con 150000 epochs
 - El hard ha sido entrenado con 200000 epochs
 - El modelo recibe el tablero como una numpy array y devuelve una puntiación
 ```
