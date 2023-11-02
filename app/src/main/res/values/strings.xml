@@ -11,4 +11,5 @@
     <string name="salir">Salir</string>
     <string name="sensores_de_vix">Sensores de Vix</string>
     <string name="icono_de_cada_uno">Icono de cada uno</string>
+    <string name="header_del_home">Header del home</string>
 </resources>

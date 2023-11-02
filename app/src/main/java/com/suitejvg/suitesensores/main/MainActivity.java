@@ -34,7 +34,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+//        * cargar el menu
         navigationView.inflateMenu(R.menu.nav_menu);
+
+//        * cargar el header
+        navigationView.inflateHeaderView(R.layout.nav_header);
 
 //        * crear el menu hamburguesa
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_nav,
@@ -60,36 +65,43 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-//        * controlar clicks en los items del menu
         if (item.getItemId() == R.id.vix) {
             Toast.makeText(this, "Vix", Toast.LENGTH_SHORT).show();
 
-//            * cambiar el menu hamburguesa
+//            * localizar el menu hamburguesa
             NavigationView navigationView = findViewById(R.id.nav_view);
 //            * limpiar el menu hamburguesa para que no se duplique
             navigationView.getMenu().clear();
+            navigationView.removeHeaderView(navigationView.getHeaderView(0));
+
 //            * cargar el menu de cada uno
             navigationView.inflateMenu(R.menu.nav_menu_vix);
+//            * cargar el header
+            navigationView.inflateHeaderView(R.layout.nav_header_vix);
 
         } else if (item.getItemId() == R.id.dele) {
             Toast.makeText(this, "Dele", Toast.LENGTH_SHORT).show();
 
-//            * cambiar el menu hamburguesa
+//              * cambiar el menu hamburguesa
 //            NavigationView navigationView = findViewById(R.id.nav_view);
-//            * limpiar el menu hamburguesa para que no se duplique
+//              * limpiar el menu hamburguesa para que no se duplique
 //            navigationView.getMenu().clear();
-//            * cargar el menu de cada uno
+//              * cargar el menu de cada uno
 //            navigationView.inflateMenu(R.menu.nav_menu_dele);
+//              * cargar el header
+//            navigationView.inflateHeaderView(R.layout.nav_header_dele);
 
         } else if (item.getItemId() == R.id.jona) {
             Toast.makeText(this, "Jona", Toast.LENGTH_SHORT).show();
 
-//            * cambiar el menu hamburguesa
+//              * cambiar el menu hamburguesa
 //            NavigationView navigationView = findViewById(R.id.nav_view);
-//            * limpiar el menu hamburguesa para que no se duplique
+//              * limpiar el menu hamburguesa para que no se duplique
 //            navigationView.getMenu().clear();
-//            * cargar el menu de cada uno
+//              * cargar el menu de cada uno
 //            navigationView.inflateMenu(R.menu.nav_menu_jona);
+//              * cargar el header
+//            navigationView.inflateHeaderView(R.layout.nav_header_jona);
         }
 
         return super.onOptionsItemSelected(item);
@@ -103,6 +115,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //            * en vez de intent para mantener menus
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragmen()).commit();
             Toast.makeText(this, "Home*", Toast.LENGTH_SHORT).show();
+
+//            * localizar el menu hamburguesa
+            NavigationView navigationView = findViewById(R.id.nav_view);
+//            * limpiar el menu hamburguesa para que no se duplique
+            navigationView.getMenu().clear();
+            navigationView.removeHeaderView(navigationView.getHeaderView(0));
+
+//            * cargar el menu de cada uno
+            navigationView.inflateMenu(R.menu.nav_menu);
+//            * cargar el header
+            navigationView.inflateHeaderView(R.layout.nav_header);
 
         } else if (item.getItemId()==R.id.nav_giroscopio) {
             Toast.makeText(this, "Giroscopio*", Toast.LENGTH_SHORT).show();
