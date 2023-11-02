@@ -15,4 +15,5 @@
     <string name="luminosidad">Luminosidad</string>
     <string name="proximidad">Proximidad</string>
     <string name="temperatura">Temperatura</string>
+    <string name="suite_jvg">Suite JVG</string>
 </resources>
