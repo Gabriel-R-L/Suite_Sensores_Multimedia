@@ -10,19 +10,20 @@
     android:background="@drawable/headerbkg"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
+
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="0dp"
         android:contentDescription="@string/icono_de_cada_uno"
-        android:src="@drawable/vix_icon"
+        android:src="@drawable/logo_jvg_no_fondo"
         tools:ignore="ImageContrastCheck" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="@string/sensores_de_vix"
+        android:layout_marginBottom="10dp"
+        android:text="@string/suite_jvg"
         android:textColor="@color/white"
         android:textSize="14sp"
         tools:ignore="TextContrastCheck" />
