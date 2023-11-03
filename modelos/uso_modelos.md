@@ -13,9 +13,6 @@
 - El medium_hard ha sido entrenado con 150000 epochs
 - El hard ha sido entrenado con 200000 epochs
 - El modelo recibe el tablero como una numpy array y devuelve una puntiación
-```
-	Ej: 
-```
 
 - Función que genera legal_moves
   ```
