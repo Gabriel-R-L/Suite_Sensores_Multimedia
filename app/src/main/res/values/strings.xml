@@ -12,4 +12,10 @@
     <string name="sensores_de_vix">Sensores de Vix</string>
     <string name="icono_de_cada_uno">Icono de cada uno</string>
     <string name="header_del_home">Header del home</string>
+    <string name="elige_dificultad">Elige Dificultad</string>
+    <string name="hard">Hard</string>
+    <string name="ptp">PtP</string>
+    <string name="medium">Medium</string>
+    <string name="easy">Easy</string>
+    <string name="btnRestart">Restart\n</string>
 </resources>

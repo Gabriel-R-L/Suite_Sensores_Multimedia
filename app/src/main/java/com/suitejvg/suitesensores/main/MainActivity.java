@@ -10,16 +10,23 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.suitejvg.suitesensores.R;
 import com.suitejvg.suitesensores.utils.HomeFragmen;
+import com.suitejvg.suitesensores.utils.TicTacPtP;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
 //    * menu hamburguesa
     private DrawerLayout drawerLayout;
+
+    TicTacPtP ticTacPtP;
+    String mode = "";
+    public Button btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -148,5 +155,64 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
+//    * manejar los eventos de los botones
+    public void handleMode(View view) {
+
+        if (view.getId() == R.id.ptp) {
+            Toast.makeText(this, "PtP", Toast.LENGTH_SHORT).show();
+            ticTacPtP = new TicTacPtP(this);
+            mode = "ptp";
+
+        } else if (view.getId() == R.id.medium) {
+            Toast.makeText(this, "Medium", Toast.LENGTH_SHORT).show();
+
+        } else if (view.getId() ==  R.id.easy) {
+            Toast.makeText(this, "Easy", Toast.LENGTH_SHORT).show();
+
+        } else if (view.getId() ==  R.id.hard) {
+            Toast.makeText(this, "Hard", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void restart(View v){
+        btn1.setText("");
+        btn2.setText("");
+        btn3.setText("");
+        btn4.setText("");
+        btn5.setText("");
+        btn6.setText("");
+        btn7.setText("");
+        btn8.setText("");
+        btn9.setText("");
+        reinicio();
+    }
+
+    public void reinicio() {
+        Toast.makeText(this, "Reiniciando..",Toast.LENGTH_LONG).show();
+        btn1.setEnabled(true);
+        btn2.setEnabled(true);
+        btn3.setEnabled(true);
+        btn4.setEnabled(true);
+        btn5.setEnabled(true);
+        btn6.setEnabled(true);
+        btn7.setEnabled(true);
+        btn8.setEnabled(true);
+        btn9.setEnabled(true);
+    }
+
+    public void handleMove(View view) {
+
+        Toast.makeText(this, "Jugando", Toast.LENGTH_SHORT).show();
+
+        if (mode.equals("")) {
+            Toast.makeText(this, "Seleccione un modo de juego", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (mode.equals("ptp")) {
+            ticTacPtP.presion(view);
+            Toast.makeText(this, "Jugando PtP", Toast.LENGTH_SHORT).show();
+
+        }
     }
 }
