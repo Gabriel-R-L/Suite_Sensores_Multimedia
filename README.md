@@ -7,16 +7,16 @@
 <summary style="color:#f2c644">Gabriel</summary>
 
 - Temperatura
-- Luminosidad
-- Proximidad
+- Luminosidad (sensor luz ambiente / brillo auto.)
+- Proximidad 
 </details>
 
 <details>
 <summary style="color:crimson">Vix</summary>
 
-- Giroscopio
-- Humedad
-- Presión
+- Podómetro
+- Vibración
+- Magnemómetro
 </details>
 
 <details>
