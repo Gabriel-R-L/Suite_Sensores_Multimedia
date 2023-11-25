@@ -18,19 +18,19 @@
         android:checkableBehavior="single">
 
         <item
-            android:id="@+id/nav_giroscopio"
+            android:id="@+id/nav_vibracion"
             android:icon="@drawable/giroscope"
-            android:title="@string/giroscopio"/>
+            android:title="@string/vibraci_n"/>
 
         <item
-            android:id="@+id/nav_humedad"
+            android:id="@+id/nav_brujula"
             android:icon="@drawable/humidity"
-            android:title="@string/sensor_humedad"/>
+            android:title="@string/sensor_br_jula"/>
 
         <item
-            android:id="@+id/nav_presion"
+            android:id="@+id/nav_pasos"
             android:icon="@drawable/presion"
-            android:title="@string/sensor_presi_n"/>
+            android:title="@string/sensor_pasos"/>
 
     </group>
 

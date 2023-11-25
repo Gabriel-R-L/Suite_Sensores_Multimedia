@@ -7,6 +7,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.annotation.SuppressLint;
+import android.content.pm.ActivityInfo;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.Menu;
@@ -16,6 +18,8 @@ import android.widget.Toast;
 import com.google.android.material.navigation.NavigationView;
 import com.suitejvg.suitesensores.R;
 import com.suitejvg.suitesensores.calculadoras.CalculadoraVix;
+import com.suitejvg.suitesensores.sensores.Brujula;
+import com.suitejvg.suitesensores.sensores.Vibracion;
 import com.suitejvg.suitesensores.utils.HomeFragmen;
 import com.suitejvg.suitesensores.utils.TicTacPtp;
 
@@ -28,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     NavigationView navigationView;
 
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +64,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new TicTacPtp()).commit();
             navigationView.setCheckedItem(R.id.nav_home);
         }
+
+//        * bloquear la rotacion de la pantalla
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
 //    * crear la toolbar de la app
@@ -123,13 +131,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             navigationView.setItemTextColor(colorStateList);
             navigationView.setItemIconTintList(colorStateList);
 
-        } else if (item.getItemId()==R.id.nav_giroscopio) {
+        } else if (item.getItemId()==R.id.nav_vibracion) {
             Toast.makeText(this, "Giroscopio*", Toast.LENGTH_SHORT).show();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Vibracion()).commit();
 
-        } else if (item.getItemId()==R.id.nav_humedad) {
+        } else if (item.getItemId()==R.id.nav_brujula) {
             Toast.makeText(this, "Humedad*", Toast.LENGTH_SHORT).show();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Brujula()).commit();
 
-        } else if (item.getItemId()==R.id.nav_presion) {
+        } else if (item.getItemId()==R.id.nav_pasos) {
             Toast.makeText(this, "Presión*", Toast.LENGTH_SHORT).show();
 
         } else if (item.getItemId()==R.id.nav_creditos) {
