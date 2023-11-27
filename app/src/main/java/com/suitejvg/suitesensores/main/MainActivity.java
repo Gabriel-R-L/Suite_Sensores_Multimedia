@@ -7,7 +7,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,6 +14,9 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.suitejvg.suitesensores.R;
+import com.suitejvg.suitesensores.sensores.Luminosidad;
+import com.suitejvg.suitesensores.sensores.Proximidad;
+import com.suitejvg.suitesensores.sensores.Temperatura;
 import com.suitejvg.suitesensores.utils.HomeFragmen;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -102,13 +104,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             navigationView.inflateHeaderView(R.layout.nav_header);
 
         } else if (item.getItemId()==R.id.nav_temper) {
-            Toast.makeText(this, "Temperatura*", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Sensor proximidad*", Toast.LENGTH_SHORT).show();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Proximidad()).commit();
         } else if (item.getItemId()==R.id.nav_luminosidad) {
-            Toast.makeText(this, "Luminosidad*", Toast.LENGTH_SHORT).show();
-            Intent linterna = new Intent(this, Linterna.class);
-            startActivity(linterna);
+            Toast.makeText(this, "Temperatura*", Toast.LENGTH_SHORT).show();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Temperatura()).commit();
         } else if (item.getItemId()==R.id.nav_proximidad) {
-            Toast.makeText(this, "Proximidad*", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Luminosidad*", Toast.LENGTH_SHORT).show();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Luminosidad()).commit();
 
         } else if (item.getItemId()==R.id.nav_creditos) {
             Toast.makeText(this, "Créditos*", Toast.LENGTH_SHORT).show();
