@@ -1,24 +1,21 @@
 package com.suitejvg.suitesensores.sensores;
 
 import android.content.Context;
-import android.graphics.Matrix;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.suitejvg.suitesensores.R;
+import androidx.fragment.app.Fragment;
 
-import java.util.Objects;
+import com.suitejvg.suitesensores.R;
 
 public class Brujula extends Fragment implements SensorEventListener {
 
@@ -28,16 +25,16 @@ public class Brujula extends Fragment implements SensorEventListener {
     private Sensor accelerometer;
     private Sensor magnetometer;
 
-    private float[] lastAccelerometer = new float[3];
-    private float[] lastMagnetometer = new float[3];
+    private final float[] lastAccelerometer = new float[3];
+    private final float[] lastMagnetometer = new float[3];
     private boolean lastAccelerometerSet = false;
     private boolean lastMagnetometerSet = false;
-
-    private float[] rotationMatrix = new float[9];
-    private float[] orientationValues = new float[3];
+    private final float[] rotationMatrix = new float[9];
+    private final float[] orientationValues = new float[3];
+    private static final float ALPHA = 0.3f; // Factor de suavizado
+    private float smoothedAzimuth = 0;
 
     public Brujula() {
-        // Required empty public constructor
     }
 
     @Override
@@ -54,48 +51,38 @@ public class Brujula extends Fragment implements SensorEventListener {
         txtGrados = view.findViewById(R.id.txtGrados);
 
         sensorManager = (SensorManager) requireActivity().getSystemService(Context.SENSOR_SERVICE);
-        magnetometer = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
-        accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+
         if (sensorManager != null) {
             // Si el magnetómetro está disponible, registra el SensorEventListener
-            sensorManager.registerListener(this, magnetometer, SensorManager.SENSOR_DELAY_GAME);
-            sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_GAME);
+            magnetometer = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
+            accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+
+            if (magnetometer != null && accelerometer != null) {
+                // Registra el SensorEventListener para el magnetómetro y el acelerómetro
+                sensorManager.registerListener(this, magnetometer, SensorManager.SENSOR_DELAY_NORMAL);
+                sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
+            }
         } else {
             // Maneja la situación en la que el dispositivo no tiene un magnetómetro
-            txtGrados.setText("Este dispositivo no tiene un magnetómetro.");
+            String TEXTO = "No se puede obtener la orientación del dispositivo";
+            txtGrados.setText(TEXTO);
         }
         return view;
     }
 
-//    @Override
-//    public void onSensorChanged(SensorEvent event) {
-//        // Obtiene los valores de los tres ejes del magnetómetro
-//        float[] magneticValues = event.values;
-//
-//        // Calcula el ángulo de rotación
-//        float rotation = (float) Math.toDegrees(Math.atan2(magneticValues[1], magneticValues[0]));
-//
-////      ! que sea positivo
-//        rotation = (rotation + 360) % 360;
-//
-//        String text = rotation + "°";
-//
-//        // Muestra el ángulo de rotación en el TextView
-//        txtGrados.setText(text);
-//
-//        // Rota la aguja de la brújula
-//        imgCompass.setRotation(-rotation);
-//    }
-
-
     @Override
     public void onSensorChanged(SensorEvent event) {
-        if (event.sensor == accelerometer) {
-            System.arraycopy(event.values, 0, lastAccelerometer, 0, event.values.length);
-            lastAccelerometerSet = true;
-        } else if (event.sensor == magnetometer) {
-            System.arraycopy(event.values, 0, lastMagnetometer, 0, event.values.length);
-            lastMagnetometerSet = true;
+
+        Log.d("SENSOR", "onSensorChanged: " + event.sensor.getType() + " | " + Sensor.TYPE_ACCELEROMETER + " " + Sensor.TYPE_MAGNETIC_FIELD);
+        switch (event.sensor.getType()) {
+            case Sensor.TYPE_ACCELEROMETER:
+                System.arraycopy(event.values, 0, lastAccelerometer, 0, event.values.length);
+                lastAccelerometerSet = true;
+                break;
+            case Sensor.TYPE_MAGNETIC_FIELD:
+                System.arraycopy(event.values, 0, lastMagnetometer, 0, event.values.length);
+                lastMagnetometerSet = true;
+                break;
         }
 
         if (lastAccelerometerSet && lastMagnetometerSet) {
@@ -107,16 +94,17 @@ public class Brujula extends Fragment implements SensorEventListener {
 
             azimuthInDegrees = (azimuthInDegrees + 360) % 360;
 
-            updateUI(azimuthInDegrees);
+            smoothedAzimuth = lowPass(azimuthInDegrees, smoothedAzimuth);
+            updateUI(smoothedAzimuth);
         }
+    }
+
+    private float lowPass(float current, float last) {
+        return last + ALPHA * (current - last);
     }
 
     private void updateUI(float azimuth) {
         // Rotate the compass image based on the azimuth angle
-//        Matrix matrix = new Matrix();
-//        imgCompass.setScaleType(ImageView.ScaleType.MATRIX);
-//        matrix.postRotate(azimuth, imgCompass.getWidth() / 2, imgCompass.getHeight() / 2);
-//        imgCompass.setImageMatrix(matrix);
         imgCompass.setRotation(-azimuth);
 
         int rotation = (int) (azimuth);

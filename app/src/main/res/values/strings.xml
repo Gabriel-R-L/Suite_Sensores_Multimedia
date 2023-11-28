@@ -31,4 +31,5 @@
     <string name="direcci_n">Dirección:</string>
     <string name="imagen_de_la_br_jula">Imagen de la brújula</string>
     <string name="imagen_de_la_aguja">Imagen de la aguja</string>
+    <string name="contador_de_pasos">Contador de Pasos</string>
 </resources>

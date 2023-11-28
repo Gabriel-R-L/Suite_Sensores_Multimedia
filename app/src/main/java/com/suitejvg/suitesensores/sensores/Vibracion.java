@@ -6,7 +6,6 @@ import android.os.Vibrator;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -21,7 +20,6 @@ import java.util.concurrent.TimeUnit;
 
 public class Vibracion extends Fragment {
 
-    Button btnVibrar;
     Vibrator vibracion;
     final int VIBRATION_DURATION = 3000;
     ImageView imgSimpson;
@@ -39,12 +37,11 @@ public class Vibracion extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_vibracion, container, false);
 
-        btnVibrar = view.findViewById(R.id.btnVibrar);
         imgSimpson = view.findViewById(R.id.imgSimpson);
         scheduler = Executors.newSingleThreadScheduledExecutor();
 
-        if (btnVibrar != null) {
-            btnVibrar.setOnClickListener(v -> toogleVibracion(vibracion.hasVibrator()));
+        if (imgSimpson != null) {
+            imgSimpson.setOnClickListener(v -> toogleVibracion(vibracion.hasVibrator()));
         }
         return view;
     }
@@ -67,11 +64,9 @@ public class Vibracion extends Fragment {
     }
 
     private void setTimeOut() {
-        scheduler.schedule(() -> {
-            requireActivity().runOnUiThread(() -> {
-                stopAnimation();
-                Toast.makeText(requireContext(), "Vibración finalizada", Toast.LENGTH_SHORT).show();
-            });
-        }, VIBRATION_DURATION, TimeUnit.MILLISECONDS);
+        scheduler.schedule(() -> requireActivity().runOnUiThread(() -> {
+            stopAnimation();
+            Toast.makeText(requireContext(), "Vibración finalizada", Toast.LENGTH_SHORT).show();
+        }), VIBRATION_DURATION, TimeUnit.MILLISECONDS);
     }
 }

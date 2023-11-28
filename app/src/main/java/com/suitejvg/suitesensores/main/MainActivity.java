@@ -19,6 +19,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.suitejvg.suitesensores.R;
 import com.suitejvg.suitesensores.calculadoras.CalculadoraVix;
 import com.suitejvg.suitesensores.sensores.Brujula;
+import com.suitejvg.suitesensores.sensores.Pasos;
 import com.suitejvg.suitesensores.sensores.Vibracion;
 import com.suitejvg.suitesensores.utils.HomeFragmen;
 import com.suitejvg.suitesensores.utils.TicTacPtp;
@@ -132,15 +133,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             navigationView.setItemIconTintList(colorStateList);
 
         } else if (item.getItemId()==R.id.nav_vibracion) {
-            Toast.makeText(this, "Giroscopio*", Toast.LENGTH_SHORT).show();
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Vibracion()).commit();
 
         } else if (item.getItemId()==R.id.nav_brujula) {
-            Toast.makeText(this, "Humedad*", Toast.LENGTH_SHORT).show();
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Brujula()).commit();
 
         } else if (item.getItemId()==R.id.nav_pasos) {
-            Toast.makeText(this, "Presión*", Toast.LENGTH_SHORT).show();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Pasos()).commit();
 
         } else if (item.getItemId()==R.id.nav_creditos) {
             Toast.makeText(this, "Créditos*", Toast.LENGTH_SHORT).show();
