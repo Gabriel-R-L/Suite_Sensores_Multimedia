@@ -1,6 +1,10 @@
 package com.suitejvg.suitesensores.sensores;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -8,6 +12,7 @@ import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.os.VibrationEffect;
@@ -18,19 +23,25 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.suitejvg.suitesensores.R;
 
 import java.util.Objects;
 
 public class Proximidad extends Fragment implements SensorEventListener {
-    private TextView textView;
     private ImageView imageView;
     private SensorManager sensorManager;
     private Sensor proximitySensor;
     private Boolean isProximitySensorAvaiable;
     private Vibrator vibrator;
+
     public Proximidad() {
-        // Required empty public constructor
+
     }
 
     @Override
@@ -47,7 +58,6 @@ public class Proximidad extends Fragment implements SensorEventListener {
         View fragmento = inflater.inflate(R.layout.fragment_sensor_proximity, container, false);
 
         //? Busco la id aquí porque en el onCreate peta. Aquí espero a que la view se cree y pueda encontrar el elemento
-        textView = fragmento.findViewById(R.id.textView);
         imageView = fragmento.findViewById(R.id.imageView);
 
 
@@ -55,9 +65,7 @@ public class Proximidad extends Fragment implements SensorEventListener {
             proximitySensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
             isProximitySensorAvaiable = true;
         } else {
-            textView.setText("Sensor de proximidad no disponible");
             isProximitySensorAvaiable = false;
-            imageView.setImageResource(R.drawable.crojo);
         }
 
         // Inflate the layout for this fragment
@@ -67,15 +75,27 @@ public class Proximidad extends Fragment implements SensorEventListener {
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        textView.setText(event.values[0] + " cm");
         if (event.values[0] == 0) {
-            imageView.setImageResource(R.drawable.cverde);
+            fadeInGif();
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 vibrator.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
             }
         } else {
-            imageView.setImageResource(R.drawable.crojo);
+            fadeOutGif();
         }
+    }
+
+    private void fadeInGif() {
+        Glide.with(this)
+                .load(R.drawable.william_scared)
+                .transition(DrawableTransitionOptions.withCrossFade())
+                .into(imageView);
+    }
+
+    private void fadeOutGif() {
+        Glide.with(this)
+                .clear(imageView);
+        imageView.setImageResource(R.drawable.william_scared);
     }
 
     @Override
