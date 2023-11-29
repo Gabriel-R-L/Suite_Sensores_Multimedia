@@ -20,17 +20,17 @@
         <item
             android:id="@+id/nav_temper"
             android:icon="@drawable/temperature"
-            android:title="@string/temperatura"/>
+            android:title="Proximidad"/>
 
         <item
             android:id="@+id/nav_luminosidad"
             android:icon="@drawable/light_level"
-            android:title="@string/luminosidad"/>
+            android:title="Batería"/>
 
         <item
             android:id="@+id/nav_proximidad"
             android:icon="@drawable/distance"
-            android:title="@string/proximidad"/>
+            android:title="Huella digital"/>
 
     </group>
 

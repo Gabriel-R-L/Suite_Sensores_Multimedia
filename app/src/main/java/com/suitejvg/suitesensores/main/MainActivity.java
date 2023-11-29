@@ -14,9 +14,9 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.suitejvg.suitesensores.R;
-import com.suitejvg.suitesensores.sensores.Luminosidad;
+import com.suitejvg.suitesensores.sensores.HuellaDigital;
 import com.suitejvg.suitesensores.sensores.Proximidad;
-import com.suitejvg.suitesensores.sensores.Temperatura;
+import com.suitejvg.suitesensores.sensores.Bateria;
 import com.suitejvg.suitesensores.utils.HomeFragmen;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -107,11 +107,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Toast.makeText(this, "Sensor proximidad*", Toast.LENGTH_SHORT).show();
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Proximidad()).commit();
         } else if (item.getItemId()==R.id.nav_luminosidad) {
-            Toast.makeText(this, "Temperatura*", Toast.LENGTH_SHORT).show();
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Temperatura()).commit();
+            Toast.makeText(this, "Bateria*", Toast.LENGTH_SHORT).show();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Bateria()).commit();
         } else if (item.getItemId()==R.id.nav_proximidad) {
-            Toast.makeText(this, "Luminosidad*", Toast.LENGTH_SHORT).show();
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Luminosidad()).commit();
+            Toast.makeText(this, "HuellaDigital*", Toast.LENGTH_SHORT).show();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HuellaDigital()).commit();
 
         } else if (item.getItemId()==R.id.nav_creditos) {
             Toast.makeText(this, "Créditos*", Toast.LENGTH_SHORT).show();
