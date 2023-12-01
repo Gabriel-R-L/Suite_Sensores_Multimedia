@@ -6,8 +6,8 @@
 <details>
 <summary style="color:#f2c644">Gabriel</summary>
 
-- Temperatura
-- Luminosidad (sensor luz ambiente / brillo auto.)
+- Lector de huella
+- Porcentaje batería
 - Proximidad 
 </details>
 
