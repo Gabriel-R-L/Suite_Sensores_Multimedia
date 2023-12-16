@@ -17,6 +17,7 @@ import com.suitejvg.suitesensores.R;
 import com.suitejvg.suitesensores.sensores.HuellaDigital;
 import com.suitejvg.suitesensores.sensores.Proximidad;
 import com.suitejvg.suitesensores.sensores.Bateria;
+import com.suitejvg.suitesensores.utils.Calculadora;
 import com.suitejvg.suitesensores.utils.HomeFragmen;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -70,6 +71,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if (item.getItemId() == R.id.dele) {
             Toast.makeText(this, "Dele", Toast.LENGTH_SHORT).show();
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Calculadora()).commit();
 
 //              * cambiar el menu hamburguesa
             NavigationView navigationView = findViewById(R.id.nav_view);
