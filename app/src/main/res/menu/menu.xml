@@ -3,19 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item android:id="@+id/vix"
-        android:title="Icono Vix"
+        android:title="@string/icono_vix"
         android:icon="@drawable/vix_icon"
         android:orderInCategory="100"
         app:showAsAction="always" />
 
     <item android:id="@+id/dele"
-        android:title="Icono delegado"
+        android:title="@string/icono_delegado"
         android:icon="@drawable/dele_icon"
         android:orderInCategory="100"
         app:showAsAction="always" />
 
     <item android:id="@+id/jona"
-        android:title="Icono Jona"
+        android:title="@string/icono_jona"
         android:icon="@drawable/jona_icon"
         android:orderInCategory="100"
         app:showAsAction="always" />

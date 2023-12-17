@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -17,20 +18,26 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.suitejvg.suitesensores.R;
+import com.suitejvg.suitesensores.calculadoras.CalculadoraDele;
+import com.suitejvg.suitesensores.calculadoras.CalculadoraJona;
 import com.suitejvg.suitesensores.calculadoras.CalculadoraVix;
+import com.suitejvg.suitesensores.sensores.Acelerometro;
+import com.suitejvg.suitesensores.sensores.Bateria;
 import com.suitejvg.suitesensores.sensores.Brujula;
+import com.suitejvg.suitesensores.sensores.Gravedad;
+import com.suitejvg.suitesensores.sensores.HuellaDigital;
 import com.suitejvg.suitesensores.sensores.Pasos;
+import com.suitejvg.suitesensores.sensores.Proximidad;
+import com.suitejvg.suitesensores.sensores.Rotacion;
 import com.suitejvg.suitesensores.sensores.Vibracion;
 import com.suitejvg.suitesensores.utils.HomeFragmen;
-import com.suitejvg.suitesensores.utils.TicTacPtp;
+import com.suitejvg.suitesensores.utils.TicTacToe;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
 //    * menu hamburguesa
     private DrawerLayout drawerLayout;
-
     Toolbar toolbar;
-
     NavigationView navigationView;
 
     @SuppressLint("SourceLockedOrientationActivity")
@@ -42,6 +49,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //        * menu de la toolbar
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        toolbar.setTitleTextColor(getResources().getColor(R.color.black));
+        toolbar.setBackground(ContextCompat.getDrawable(this, R.drawable.gradient_background_main));
+
 
 //        * menu hamburguesa e iniciar event listener
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -62,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 //        * abrir el fragmento home al iniciar la app
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new TicTacPtp()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragmen()).commit();
             navigationView.setCheckedItem(R.id.nav_home);
         }
 
@@ -96,13 +107,50 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //            * cargar el header
             navigationView.inflateHeaderView(R.layout.nav_header_vix);
 
+//            * cambiar el color del menu hamburguesa
             ColorStateList colorStateList = ColorStateList.valueOf(getResources().getColor(R.color.vix));
-
-            toolbar.setBackgroundColor(getResources().getColor(R.color.vix));
             navigationView.setItemTextColor(colorStateList);
             navigationView.setItemIconTintList(colorStateList);
 
+//            * background gradient de la toolbar
+            toolbar.setBackground(ContextCompat.getDrawable(this, R.drawable.gradient_background_vix));
+
+        } else if (item.getItemId() == R.id.dele) {
+            Toast.makeText(this, "Dele", Toast.LENGTH_SHORT).show();
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new CalculadoraDele()).commit();
+
+//              * cambiar el menu hamburguesa
+            navigationView = findViewById(R.id.nav_view);
+//              * limpiar el menu hamburguesa para que no se duplique
+            navigationView.getMenu().clear();
+            navigationView.removeHeaderView(navigationView.getHeaderView(0));
+//              * cargar el menu de cada uno
+            navigationView.inflateMenu(R.menu.nav_menu_dele);
+//              * cargar el header
+            navigationView.inflateHeaderView(R.layout.nav_header_dele);
+
+            toolbar.setBackground(ContextCompat.getDrawable(this, R.drawable.gradient_background_dele));
+
+        } else if (item.getItemId() == R.id.jona) {
+            Toast.makeText(this, "Dele", Toast.LENGTH_SHORT).show();
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new CalculadoraJona()).commit();
+
+//              * cambiar el menu hamburguesa
+            navigationView = findViewById(R.id.nav_view);
+//              * limpiar el menu hamburguesa para que no se duplique
+            navigationView.getMenu().clear();
+            navigationView.removeHeaderView(navigationView.getHeaderView(0));
+//              * cargar el menu de cada uno
+            navigationView.inflateMenu(R.menu.nav_menu_jona);
+//              * cargar el header
+            navigationView.inflateHeaderView(R.layout.nav_header_jona);
+
+            toolbar.setBackground(ContextCompat.getDrawable(this, R.drawable.gradient_background_jon));
+            toolbar.setTitleTextColor(getResources().getColor(R.color.white));
         }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -110,7 +158,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-        if (item.getItemId()==R.id.nav_home){
+        if (item.getItemId()==R.id.nav_home) {
 //            * en vez de intent para mantener menus
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragmen()).commit();
             Toast.makeText(this, "Home*", Toast.LENGTH_SHORT).show();
@@ -128,7 +176,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             ColorStateList colorStateList = ColorStateList.valueOf(getResources().getColor(R.color.lavender));
 
-            toolbar.setBackgroundColor(getResources().getColor(R.color.lavender));
+            toolbar.setBackground(ContextCompat.getDrawable(this, R.drawable.gradient_background_main));
             navigationView.setItemTextColor(colorStateList);
             navigationView.setItemIconTintList(colorStateList);
 
@@ -141,7 +189,31 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (item.getItemId()==R.id.nav_pasos) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Pasos()).commit();
 
-        } else if (item.getItemId()==R.id.nav_creditos) {
+        }  else if (item.getItemId()==R.id.nav_temper) {
+            Toast.makeText(this, "Sensor proximidad*", Toast.LENGTH_SHORT).show();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Proximidad()).commit();
+
+        } else if (item.getItemId()==R.id.nav_luminosidad) {
+            Toast.makeText(this, "Bateria*", Toast.LENGTH_SHORT).show();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Bateria()).commit();
+
+        } else if (item.getItemId()==R.id.nav_proximidad) {
+            Toast.makeText(this, "HuellaDigital*", Toast.LENGTH_SHORT).show();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HuellaDigital()).commit();
+
+        }  else if (item.getItemId()==R.id.nav_rotacion) {
+            Toast.makeText(this, "Rotacion*", Toast.LENGTH_SHORT).show();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Rotacion()).commit();
+
+        } else if (item.getItemId()==R.id.nav_grevedad) {
+            Toast.makeText(this, "Gravedad*", Toast.LENGTH_SHORT).show();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Gravedad()).commit();
+
+        } else if (item.getItemId()==R.id.nav_Acelerometo) {
+            Toast.makeText(this, "Acelerometo*", Toast.LENGTH_SHORT).show();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Acelerometro()).commit();
+
+        }  else if (item.getItemId()==R.id.nav_creditos) {
             Toast.makeText(this, "Créditos*", Toast.LENGTH_SHORT).show();
 
         } else if (item.getItemId()==R.id.nav_info) {

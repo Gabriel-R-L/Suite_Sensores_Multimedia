@@ -31,7 +31,7 @@ public class Brujula extends Fragment implements SensorEventListener {
     private boolean lastMagnetometerSet = false;
     private final float[] rotationMatrix = new float[9];
     private final float[] orientationValues = new float[3];
-    private static final float ALPHA = 0.3f; // Factor de suavizado
+    private static final float ALPHA = 0.15f; // Factor de suavizado
     private float smoothedAzimuth = 0;
 
     public Brujula() {

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn = "navigation_view">
+
+    <item
+        android:title="">
+        <menu>
+            <item
+                android:id="@+id/nav_home"
+                android:icon="@drawable/home"
+                android:title="@string/home"/>
+        </menu>
+    </item>
+
+    <group
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_temper"
+            android:icon="@drawable/distance"
+            android:title="Proximidad"/>
+
+        <item
+            android:id="@+id/nav_luminosidad"
+            android:icon="@drawable/bateria"
+            android:title="Batería"/>
+
+        <item
+            android:id="@+id/nav_proximidad"
+            android:icon="@drawable/baseline_fingerprint_24"
+            android:title="Huella digital"/>
+
+    </group>
+
+
+    <item
+        android:title="">
+        <menu>
+
+            <item
+                android:id="@+id/nav_creditos"
+                android:icon="@drawable/credits"
+                android:title="@string/cr_ditos"/>
+
+            <item
+                android:id="@+id/nav_info"
+                android:icon="@drawable/info"
+                android:title="@string/info"/>
+
+            <item
+                android:id="@+id/nav_salir"
+                android:icon="@drawable/exit"
+                android:title="@string/salir"/>
+        </menu>
+    </item>
+</menu>

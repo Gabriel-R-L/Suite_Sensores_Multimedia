@@ -9,6 +9,10 @@
 <!-- ! Permisos cache  -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
     
 <!-- ! Permisos sensores  -->
     <uses-permission android:name="android.permission.VIBRATE" />
