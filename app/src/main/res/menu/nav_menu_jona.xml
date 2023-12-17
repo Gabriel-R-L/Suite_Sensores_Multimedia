@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn = "navigation_view">
+
+    <item
+        android:title="">
+        <menu>
+            <item
+                android:id="@+id/nav_home"
+                android:icon="@drawable/home"
+                android:title="@string/home"/>
+        </menu>
+    </item>
+
+    <group
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_rotacion"
+            android:icon="@drawable/jona_rotacion"
+            android:title="@string/rotacion"/>
+
+        <item
+            android:id="@+id/nav_grevedad"
+            android:icon="@drawable/jona_gravead1"
+            android:title="@string/gravedad"/>
+
+        <item
+            android:id="@+id/nav_Acelerometo"
+            android:icon="@drawable/jona_presion2"
+            android:title="@string/sensor_Acelerometo"/>
+
+    </group>
+
+
+    <item
+        android:title="">
+        <menu>
+
+            <item
+                android:id="@+id/nav_creditos"
+                android:icon="@drawable/credits"
+                android:title="@string/cr_ditos"/>
+
+            <item
+                android:id="@+id/nav_info"
+                android:icon="@drawable/info"
+                android:title="@string/info"/>
+
+            <item
+                android:id="@+id/nav_salir"
+                android:icon="@drawable/exit"
+                android:title="@string/salir"/>
+        </menu>
+    </item>
+</menu>

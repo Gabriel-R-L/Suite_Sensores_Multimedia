@@ -1,0 +1,42 @@
+<!-- fragment_rotation.xml -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp"
+    android:background="#EFEBEA">
+
+
+    <ImageView
+        android:id="@+id/totodileImg"
+        android:layout_width="269dp"
+        android:layout_height="230dp"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="43dp"
+        android:layout_marginEnd="43dp"
+        android:src="@drawable/totod2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.499"
+        android:visibility="gone"
+        />
+
+
+    <ImageView
+        android:id="@+id/feraligatr1"
+        android:layout_width="308dp"
+        android:layout_height="356dp"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="43dp"
+        android:layout_marginEnd="43dp"
+        android:src="@drawable/feraligatr"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.499"
+        android:visibility="gone" />
+
+</RelativeLayout>
