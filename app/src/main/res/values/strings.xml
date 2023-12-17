@@ -40,4 +40,5 @@
     <string name="calculator_workings">""</string>
     <string name="calcular">Calcular</string>
     <string name="calculadora">Calculadora</string>
+    <string name="battery_level">Battery Level</string>
 </resources>

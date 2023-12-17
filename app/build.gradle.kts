@@ -29,6 +29,7 @@ android {
 }
 
 dependencies {
+    implementation ("com.mikhaellopez:circularprogressbar:3.1.0")
     implementation ("net.objecthunter:exp4j:0.4.8")
     implementation ("androidx.biometric:biometric:1.1.0")
     implementation ("com.github.bumptech.glide:glide:4.12.0")
