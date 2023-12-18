@@ -24,7 +24,6 @@ public class Brujula extends Fragment implements SensorEventListener {
     private SensorManager sensorManager;
     private Sensor accelerometer;
     private Sensor magnetometer;
-
     private final float[] lastAccelerometer = new float[3];
     private final float[] lastMagnetometer = new float[3];
     private boolean lastAccelerometerSet = false;
@@ -73,7 +72,7 @@ public class Brujula extends Fragment implements SensorEventListener {
     @Override
     public void onSensorChanged(SensorEvent event) {
 
-        Log.d("SENSOR", "onSensorChanged: " + event.sensor.getType() + " | " + Sensor.TYPE_ACCELEROMETER + " " + Sensor.TYPE_MAGNETIC_FIELD);
+//      * ver que sensor es el que se activa
         switch (event.sensor.getType()) {
             case Sensor.TYPE_ACCELEROMETER:
                 System.arraycopy(event.values, 0, lastAccelerometer, 0, event.values.length);
@@ -85,20 +84,27 @@ public class Brujula extends Fragment implements SensorEventListener {
                 break;
         }
 
+//      *  si los sensores cambian
         if (lastAccelerometerSet && lastMagnetometerSet) {
+
+//          * sacar los valores de los sensores
             SensorManager.getRotationMatrix(rotationMatrix, null, lastAccelerometer, lastMagnetometer);
             SensorManager.getOrientation(rotationMatrix, orientationValues);
 
+//          * pasar los valores a grados
             float azimuthInRadians = orientationValues[0];
             float azimuthInDegrees = (float) Math.toDegrees(azimuthInRadians);
 
+//          * pasar a positivo
             azimuthInDegrees = (azimuthInDegrees + 360) % 360;
 
+//          * suavizar el movimiento
             smoothedAzimuth = lowPass(azimuthInDegrees, smoothedAzimuth);
             updateUI(smoothedAzimuth);
         }
     }
 
+//  * metodo para suavizar el movimiento
     private float lowPass(float current, float last) {
         return last + ALPHA * (current - last);
     }

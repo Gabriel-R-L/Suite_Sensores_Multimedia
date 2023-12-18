@@ -5,10 +5,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.VibrationEffect;
-import android.os.Vibrator;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +24,6 @@ public class Proximidad extends Fragment implements SensorEventListener {
     private SensorManager sensorManager;
     private Sensor proximitySensor;
     private Boolean isProximitySensorAvaiable;
-    private Vibrator vibrator;
 
     public Proximidad() {
 
@@ -38,7 +34,6 @@ public class Proximidad extends Fragment implements SensorEventListener {
         super.onCreate(savedInstanceState);
 
         sensorManager = (SensorManager) Objects.requireNonNull(requireActivity().getSystemService(Context.SENSOR_SERVICE));
-        vibrator = (Vibrator) Objects.requireNonNull(requireActivity().getSystemService(Context.VIBRATOR_SERVICE));
     }
 
     @Override
@@ -66,9 +61,6 @@ public class Proximidad extends Fragment implements SensorEventListener {
     public void onSensorChanged(SensorEvent event) {
         if (event.values[0] == 0) {
             fadeInGif();
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                vibrator.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
-            }
         } else {
             fadeOutGif();
         }
@@ -76,7 +68,7 @@ public class Proximidad extends Fragment implements SensorEventListener {
 
     private void fadeInGif() {
         Glide.with(this)
-                .load(R.drawable.william_scared)
+                .load(R.drawable.wiliam_scared)
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .into(imageView);
     }
@@ -84,7 +76,7 @@ public class Proximidad extends Fragment implements SensorEventListener {
     private void fadeOutGif() {
         Glide.with(this)
                 .clear(imageView);
-        imageView.setImageResource(R.drawable.william_scared);
+        imageView.setImageResource(R.drawable.wiliam_scared);
     }
 
     @Override

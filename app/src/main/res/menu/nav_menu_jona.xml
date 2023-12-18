@@ -23,12 +23,12 @@
             android:title="@string/rotacion"/>
 
         <item
-            android:id="@+id/nav_grevedad"
+            android:id="@+id/nav_gravedad"
             android:icon="@drawable/jona_gravead1"
             android:title="@string/gravedad"/>
 
         <item
-            android:id="@+id/nav_Acelerometo"
+            android:id="@+id/nav_acelerometo"
             android:icon="@drawable/jona_presion2"
             android:title="@string/sensor_Acelerometo"/>
 

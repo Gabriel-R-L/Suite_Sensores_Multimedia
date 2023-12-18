@@ -71,11 +71,17 @@
     <string name="icono_delegado">Icono delegado</string>
     <string name="icono_jona">Icono Jona</string>
 
-<!--    jona-->
+    <!--    jona-->
     <string name="rotacion">Rotacion</string>
     <string name="gravedad">Gravedad</string>
     <string name="acelerometro">Acelerometro</string>
     <string name="sensores_de_jona">Sensores de Jona</string>
     <string name="sensor_Acelerometo">Acelerometo</string>
+    <string name="integrantes">Integrantes</string>
+    <string name="jonathan_alonzo_jona"><![CDATA[Jonathan Alonzo -> Jona]]></string>
+    <string name="v_ctor_dom_nguez_vix"><![CDATA[Víctor Domínguez -> Vix]]></string>
+    <string name="gabriel_ramos_delegado"><![CDATA[Gabriel Ramos -> Delegado]]></string>
+    <string name="imagen_de_github">Imagen de GitHub</string>
+    <string name="enlace_al_github_del_proyecto">Enlace al GitHub del proyecto</string>
 
 </resources>

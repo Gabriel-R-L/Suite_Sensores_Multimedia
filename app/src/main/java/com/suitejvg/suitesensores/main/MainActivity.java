@@ -9,12 +9,13 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.ColorStateList;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.suitejvg.suitesensores.R;
@@ -30,8 +31,8 @@ import com.suitejvg.suitesensores.sensores.Pasos;
 import com.suitejvg.suitesensores.sensores.Proximidad;
 import com.suitejvg.suitesensores.sensores.Rotacion;
 import com.suitejvg.suitesensores.sensores.Vibracion;
+import com.suitejvg.suitesensores.utils.Creditos;
 import com.suitejvg.suitesensores.utils.HomeFragmen;
-import com.suitejvg.suitesensores.utils.TicTacToe;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        toolbar.setTitleTextColor(getResources().getColor(R.color.black));
+//        toolbar.setTitleTextColor(getResources().getColor(R.color.black));
         toolbar.setBackground(ContextCompat.getDrawable(this, R.drawable.gradient_background_main));
 
 
@@ -116,7 +117,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             toolbar.setBackground(ContextCompat.getDrawable(this, R.drawable.gradient_background_vix));
 
         } else if (item.getItemId() == R.id.dele) {
-            Toast.makeText(this, "Dele", Toast.LENGTH_SHORT).show();
 
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new CalculadoraDele()).commit();
 
@@ -133,7 +133,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             toolbar.setBackground(ContextCompat.getDrawable(this, R.drawable.gradient_background_dele));
 
         } else if (item.getItemId() == R.id.jona) {
-            Toast.makeText(this, "Dele", Toast.LENGTH_SHORT).show();
 
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new CalculadoraJona()).commit();
 
@@ -161,7 +160,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (item.getItemId()==R.id.nav_home) {
 //            * en vez de intent para mantener menus
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragmen()).commit();
-            Toast.makeText(this, "Home*", Toast.LENGTH_SHORT).show();
 
 //            * localizar el menu hamburguesa
             navigationView = findViewById(R.id.nav_view);
@@ -190,41 +188,35 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Pasos()).commit();
 
         }  else if (item.getItemId()==R.id.nav_temper) {
-            Toast.makeText(this, "Sensor proximidad*", Toast.LENGTH_SHORT).show();
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Proximidad()).commit();
 
         } else if (item.getItemId()==R.id.nav_luminosidad) {
-            Toast.makeText(this, "Bateria*", Toast.LENGTH_SHORT).show();
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Bateria()).commit();
 
         } else if (item.getItemId()==R.id.nav_proximidad) {
-            Toast.makeText(this, "HuellaDigital*", Toast.LENGTH_SHORT).show();
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HuellaDigital()).commit();
 
         }  else if (item.getItemId()==R.id.nav_rotacion) {
-            Toast.makeText(this, "Rotacion*", Toast.LENGTH_SHORT).show();
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Rotacion()).commit();
 
-        } else if (item.getItemId()==R.id.nav_grevedad) {
-            Toast.makeText(this, "Gravedad*", Toast.LENGTH_SHORT).show();
+        } else if (item.getItemId()==R.id.nav_gravedad) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Gravedad()).commit();
 
-        } else if (item.getItemId()==R.id.nav_Acelerometo) {
-            Toast.makeText(this, "Acelerometo*", Toast.LENGTH_SHORT).show();
+        } else if (item.getItemId()==R.id.nav_acelerometo) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Acelerometro()).commit();
 
         }  else if (item.getItemId()==R.id.nav_creditos) {
-            Toast.makeText(this, "Créditos*", Toast.LENGTH_SHORT).show();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Creditos()).commit();
 
         } else if (item.getItemId()==R.id.nav_info) {
-            Toast.makeText(this, "Info*", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse("https://github.com/Gabriel-R-L/Suite_Sensores_Multimedia/blob/9301640978bba492d56dd485ec97c0b05f84a75e/Documentaci%C3%B3n%20SUITE%20JVG.pdf"));
+            startActivity(intent);
 
         } else if (item.getItemId()==R.id.nav_salir) {
-            Toast.makeText(this, "Saliendo*", Toast.LENGTH_SHORT).show();
             finishAffinity();
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
-//    * manejar los eventos de los botones
 }

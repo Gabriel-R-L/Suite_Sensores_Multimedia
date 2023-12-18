@@ -86,7 +86,7 @@ public class Pasos extends Fragment implements SensorEventListener {
         // Calcular la magnitud de la aceleración lineal
         float magnitude = (float) Math.sqrt(linearAcceleration[0] * linearAcceleration[0] + linearAcceleration[1] * linearAcceleration[1] + linearAcceleration[2] * linearAcceleration[2]);
 
-        // Verificar si la magnitud supera un umbral
+        // Verificar si la magnitud supera el umbral
         if (magnitude > ACCELERATION_THRESHOLD) {
             long currentTimeNs = System.nanoTime();
 
@@ -96,7 +96,6 @@ public class Pasos extends Fragment implements SensorEventListener {
                 return true; // Se detecta un paso
             }
         }
-
         return false; // No se detecta un paso
     }
 
